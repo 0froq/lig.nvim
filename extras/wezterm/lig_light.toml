@@ -1,0 +1,45 @@
+[colors]
+foreground = "#575655"
+background = "#fff9f5"
+cursor_bg = "#575655"
+cursor_border = "#575655"
+cursor_fg = "#fff9f5"
+selection_bg = "#c3bfbc"
+selection_fg = "#575655"
+split = "#9f9c99"
+compose_cursor = "${fg_string}"
+scrollbar_thumb = "#6f6d6c"
+
+ansi = ["#fff9f5", "#e79a9a", "#69c493", "#d7b366", "#6fa8f0", "#b57aa7", "#68b7b7", "#575655"]
+brights = ["#ddd8d5", "#a45b5b", "#387a55", "#916f3b", "#3f6496", "#774d70", "#3a7878", "#0f1010"]
+
+[colors.tab_bar]
+inactive_tab_edge = "#cfcac7"
+background = "#fff9f5"
+
+[colors.tab_bar.active_tab]
+fg_color = "#e7e2de"
+bg_color = "#272727"
+
+[colors.tab_bar.inactive_tab]
+fg_color = "#9f9c99"
+bg_color = "#cfcac7"
+
+[colors.tab_bar.inactive_tab_hover]
+fg_color = "#575655"
+bg_color = "#6f6d6c"
+# intensity = "Bold"
+
+[colors.tab_bar.new_tab_hover]
+fg_color = "#575655"
+bg_color = "#fff9f5"
+intensity = "Bold"
+
+[colors.tab_bar.new_tab]
+fg_color = "#575655"
+bg_color = "#fff9f5"
+
+[metadata]
+aliases = []
+author = "froQ"
+name = "lig_light"

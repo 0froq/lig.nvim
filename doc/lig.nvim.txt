@@ -1,0 +1,95 @@
+*oq.nvim.txt*          For Neovim         Last change: 2025 October 21
+
+==============================================================================
+Table of Contents                          *oq.nvim-table-of-contents*
+
+1. oQ                                   |oq.nvim-oq|
+	- Features                            |oq.nvim-features|
+	- Installation                        |oq.nvim-installation|
+	- Usage                               |oq.nvim-usage|
+	- Configuration                       |oq.nvim-configuration|
+	- Overriding Colors & Highlight Groups|oq.nvim-overriding-colors|
+	- Extras                              |oq.nvim-extras|
+	- Contributing                        |oq.nvim-contributing|
+
+==============================================================================
+1. oQ                                                     *oq.nvim-oq*
+
+A dark and light Neovim colorscheme written in Lua.
+
+FEATURES                                *oq.nvim-features*
+
+- Supports recent Neovim features (>= 0.8.0).
+- Terminal colors.
+- Supports several plugins and provides a small set of extras.
+
+Installation                            *oq.nvim-installation*
+
+Install the theme with your preferred package manager, for example using
+`lazy.nvim`:
+
+>lua
+	{
+	  "Fro-Q/oq.nvim",
+	  lazy = false,
+	  priority = 1000,
+	  opts = {},
+	}
+<
+
+Usage                                   *oq.nvim-usage*
+
+Load the theme with:
+
+>lua
+	vim.cmd[[colorscheme oq]]
+<
+
+You can also load a specific style by requiring and running the loader files
+in `colors/`, for example `colors/oq-dark.lua`, `colors/oq-light.lua`, etc.
+
+Configuration                           *oq.nvim-configuration*
+
+Set options *before* calling `colorscheme oq` by calling `require("oq").setup(opts)`.
+
+Default options (excerpt):
+
+>lua
+	-- style = "dark",
+	-- light_style = "light",
+	-- transparent = false,
+	-- terminal_colors = true,
+	-- day_brightness = 0.3,
+	-- plugins = { all = package.loaded.lazy == nil, auto = true }
+<
+
+Overriding Colors & Highlight Groups    *oq.nvim-overriding-colors*
+
+You can override the generated colors and highlights with the provided
+hooks:
+
+>lua
+	require("oq").setup({
+	  on_colors = function(colors) -- modify colors here end,
+	  on_highlights = function(highlights, colors) -- modify highlights here end,
+	})
+<
+
+Extras                                  *oq.nvim-extras*
+
+Extras provide config files for other terminals and applications. See the
+`extras/` directory for supported formats (kitty, wezterm, ghostty, vim,
+etc.).
+
+Contributing                            *oq.nvim-contributing*
+
+Pull requests are welcome. To generate extras templates use:
+
+>sh
+	./scripts/build
+<
+
+Generated from README.md.
+
+vim:tw=78:ts=8:noet:ft=help:norl:
+

@@ -1,0 +1,1 @@
+nvim -u tests/minit.lua --headless +"lua require('lig.extra').setup()" +qa

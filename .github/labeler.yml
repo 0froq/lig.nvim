@@ -1,0 +1,28 @@
+core:
+  - all:
+      - changed-files:
+          - any-glob-to-any-file: "lua/lig/**"
+          - all-globs-to-all-files:
+              - "!lua/lig**"
+              - "!lua/lig**"
+              - "!lua/lig*"
+
+extras:
+  - changed-files:
+      - any-glob-to-any-file: "lua/lig*"
+
+groups:
+  - changed-files:
+      - any-glob-to-any-file: "lua/lig**"
+
+base:
+  - changed-files:
+      - any-glob-to-any-file:
+          - "lua/lig/groups/base.lua"
+          - "lua/lig/groups/kinds.lua"
+          - "lua/lig/groups/treesitter.lua"
+          - "lua/lig/groups/semantic_tokens.lua"
+
+colors:
+  - changed-files:
+      - any-glob-to-any-file: "lua/lig**"

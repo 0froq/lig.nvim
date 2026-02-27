@@ -1,0 +1,1 @@
+nvim -u tests/minit.lua -l lua/lig/docs.lua

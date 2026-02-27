@@ -1,0 +1,14 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  ci:
+    uses: 0froq/github/.github/workflows/ci.yml@main
+    secrets: inherit
+    with:
+      plugin: lig.nvim
+      repo: 0froq/lig.nvim
