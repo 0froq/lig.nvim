@@ -11,6 +11,7 @@ function M.get(c, opts)
     MiniCompletionDeprecated = { fg = c.fg_dim, strikethrough = true },
     MiniCompletionInfoBorderOutdated = { fg = c.diag.warn }
   }
+  
 end
 
 return M

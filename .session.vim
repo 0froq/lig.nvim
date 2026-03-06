@@ -14,17 +14,26 @@ else
   set shortmess=aoO
 endif
 badd +50 .lazy.lua
-badd +9 lua/lig/groups/mini_files.lua
+badd +14 lua/lig/groups/mini_files.lua
 badd +11 lua/lig/groups/mini_clue.lua
 badd +18 lua/lig/groups/noice.lua
 badd +1 lua/lig/groups/mini_tabline.lua
-badd +16 lua/lig/groups/telescope.lua
-badd +69 lua/lig/groups/init.lua
-badd +28 lua/lig/groups/base.lua
+badd +14 lua/lig/groups/telescope.lua
+badd +68 lua/lig/groups/init.lua
+badd +41 lua/lig/groups/base.lua
 badd +44 lua/lig/groups/semantic_tokens.lua
+badd +57 lua/lig/groups/blink.lua
+badd +15 lua/lig/groups/mini_completion.lua
+badd +87 ~/.config/nvim/lua/configs/blink.lua
+badd +70 ~/2_areas/development/themes/lig.nvim/lua/lig/groups/treesitter.lua
+badd +30 lua/lig/groups/kinds.lua
+badd +17 ~/.config/nvim/lua/plugins/mini-completion.lua
+badd +45 ~/2_areas/development/themes/lig.nvim/lua/lig/util.lua
+badd +14 lua/lig/colors/dark.lua
+badd +23 lua/lig/colors/light.lua
 argglobal
 %argdel
-edit lua/lig/groups/telescope.lua
+edit lua/lig/colors/light.lua
 wincmd t
 let s:save_winminheight = &winminheight
 let s:save_winminwidth = &winminwidth
@@ -33,6 +42,7 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
+balt lua/lig/colors/dark.lua
 setlocal foldmethod=expr
 setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
 setlocal foldmarker={{{,}}}
@@ -41,14 +51,12 @@ setlocal foldlevel=99
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldenable
-6
-sil! normal! zo
-let s:l = 16 - ((9 * winheight(0) + 6) / 13)
+let s:l = 23 - ((22 * winheight(0) + 20) / 41)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 16
-normal! 0
+keepjumps 23
+normal! 013|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

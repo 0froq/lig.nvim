@@ -11,6 +11,7 @@ function M.get(c, opts)
     TelescopeSelectionCaret = { bg = c.bg_selection, fg = c.fg_strong },
     TelescopeTitle = { fg = c.fg_strong },
     TelescopeBorder = { fg = c.border },
+    TelescopeNormal = { bg = c.bg_float },
   }
 end
 
