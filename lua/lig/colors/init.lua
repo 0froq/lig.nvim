@@ -46,9 +46,9 @@ function M.setup(opts)
   colors.shadow        = colors.fg_dim
 
   colors.mode = {
-    normal = colors.teal[2],
+    normal = colors.emerald[2],
     insert = colors.bg_reversed,
-    visual = colors.indigo[2],
+    visual = colors.plum[2],
     replace = colors.amber[2],
     command = colors.coral[2],
     other = colors.bg_highlight
