@@ -9,8 +9,8 @@ function M.get(c, opts)
     MiniFilesBorder = { fg = c.border, bg = c.bg },
     MiniFilesBorderModified = { fg = c.git.change, bg = c.bg },
     MiniFilesCursorLine = { fg = c.fg_strong, bg = c.bg_selection },
-    MiniFilesDirectory = { fg = c.fg_muted, bg = c.bg },
-    MiniFilesFile = { bg = c.bg },
+    MiniFilesDirectory = { fg = c.fg, bg = c.bg },
+    MiniFilesFile = { fg = c.fg_muted, bg = c.bg },
     MiniFilesNormal = { bg = c.bg },
     MiniFilesTitle = { bg = c.bg_folded, fg = c.fg_strong },
     MiniFilesTitleFocused = { fg = c.fg_reversed, bg = c.bg_reversed, bold = true },
@@ -18,4 +18,3 @@ function M.get(c, opts)
 end
 
 return M
-
