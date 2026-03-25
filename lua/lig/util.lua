@@ -63,29 +63,30 @@ function M.lighter(hex)
   return M.blend_fg(hex, 0.7, "#ffffff")
 end
 
-function M.hl(hex, style)
+function M.hl(hex, amount, style)
   -- style = style or "light"
   if style == "dark" then
-    return M.lighter(hex)
+    return M.blend_fg(hex, amount or 0.7)
   elseif style == "light" then
-    return M.darker(hex)
+    return M.blend_bg(hex, amount or 0.7)
   else
     print("Unknown style: " .. style)
     return hex
   end
 end
 
-function M.fd(hex, style)
+function M.fd(hex, amount, style)
   -- style = style or "light"
   if style == "dark" then
-    return M.darker(hex)
+    return M.blend_bg(hex, amount or 0.7)
   elseif style == "light" then
-    return M.lighter(hex)
+    return M.blend_fg(hex, amount or 0.7)
   else
     print("Unknown style: " .. style)
     return hex
   end
 end
+
 ---@param color string|Palette
 function M.invert(color)
   if type(color) == "table" then
