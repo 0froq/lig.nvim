@@ -8,10 +8,10 @@ M.version = "0.0.1" -- x-release-please-version
 ---@field on_highlights fun(highlights: lig.Highlights, colors: ColorScheme)
 M.defaults = {
   style = "dark",
-  light_style = "light",  -- The theme is used when the background is set to light
+  light_style = "light", -- The theme is used when the background is set to light
   mono = {
     enabled = false,
-  },           -- Use a monochromatic color scheme, disabling most syntax highlighting
+  },                      -- Use a monochromatic color scheme, disabling most syntax highlighting
   transparent = false,    -- Enable this to disable setting the background color
   terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
   styles = {
