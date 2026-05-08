@@ -7,6 +7,9 @@ on:
 
 jobs:
   ci:
+    permissions:
+      contents: write
+      pull-requests: write
     uses: folke/github/.github/workflows/ci.yml@main
     secrets: inherit
     with:
