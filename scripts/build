@@ -1,1 +1,1 @@
-nvim -u tests/minit.lua --headless +"lua require('lig.extra').setup()" +qa
+nvim --headless -u NONE -c "lua vim.opt.rtp:prepend(vim.uv.cwd())" -c "lua require('lig.extra').setup()" -c "qa!"
