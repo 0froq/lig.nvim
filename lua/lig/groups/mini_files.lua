@@ -12,8 +12,8 @@ function M.get(c, opts)
     MiniFilesDirectory = { fg = c.fg, bg = c.bg },
     MiniFilesFile = { fg = c.fg_muted, bg = c.bg },
     MiniFilesNormal = { bg = c.bg },
-    MiniFilesTitle = { bg = c.bg_folded, fg = c.fg_strong },
-    MiniFilesTitleFocused = { fg = c.fg_reversed, bg = c.bg_reversed, bold = true },
+    MiniFilesTitle = { fg = c.fg_muted },
+    MiniFilesTitleFocused = { fg = c.fg_strong, bold = true },
   }
 end
 
