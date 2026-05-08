@@ -1,78 +1,26 @@
 ---@diagnostic disable: undefined-global
+local Util = require('lig.util')
 local M = {}
+
+local gen_triad = function(base)
+  return {
+    Util.blend_fg(base, 0.6),
+    base,
+    Util.blend_bg(base, 0.6),
+  }
+end
 
 ---@class Colors
 local color = {
-  rose = {
-    "#f7c7c7",
-    "#e79a9a",
-    "#a45b5b",
-  },
-  coral = {
-    "#f6bf9f",
-    "#e0926d",
-    "#9b5a36",
-  },
-  amber = {
-    "#f1d89b",
-    "#d7b366",
-    "#916f3b",
-  },
-  cyan = {
-    "#a2e1e1",
-    "#68b7b7",
-    "#3a7878",
-  },
-  teal = {
-    "#9adcc0",
-    "#60b89a",
-    "#376f5a",
-  },
-  azure = {
-    "#aacdf7",
-    "#6fa8f0",
-    "#3f6496",
-  },
-  indigo = {
-    "#b8bae8",
-    "#8286d4",
-    "#4c4f93",
-  },
-  moss = {
-    "#bedba6",
-    "#87b173",
-    "#526b46",
-  },
-  olive = {
-    "#d6cf95",
-    "#a69c60",
-    "#6a643a",
-  },
-  emerald = {
-    "#a3e4b8",
-    "#69c493",
-    "#387a55",
-  },
-  sage = {
-    "#cadcc7",
-    "#98b29a",
-    "#627662",
-  },
-  mauve = {
-    "#d2b7e0",
-    "#a67dbe",
-    "#6a4f88",
-  },
-  plum = {
-    "#e1b9d5",
-    "#b57aa7",
-    "#774d70",
-  },
-  iris = {
-    "#b8b7e5",
-    "#8885c8",
-    "#545295",
-  },
+  red = gen_triad('#fa6a6a'),
+  green = gen_triad('#6aca9a'),
+  yellow = gen_triad('#faca6a'),
+  blue = gen_triad('#6a9afa'),
+  magenta = gen_triad('#ca6a9a'),
+  cyan = gen_triad('#6acaca'),
+
+  orange = gen_triad('#fa9a6a'),
+  azure = gen_triad('#0acafa'),
 }
 
 ---@class GrayScale
@@ -80,17 +28,17 @@ local gray_scale = {
   black    = "#000000",
   white    = "#ffffff",
 
-  soft_50  = "#fff9f5",
-  soft_100 = "#e7e2de",
-  soft_200 = "#cfcac7",
-  soft_300 = "#b7b3b0",
-  soft_400 = "#9f9c99",
-  soft_500 = "#878583",
-  soft_600 = "#6f6d6c",
-  soft_700 = "#575655",
-  soft_800 = "#3f3f3e",
-  soft_900 = "#272727",
-  soft_950 = "#0f1010",
+  soft_50  = "#fafafa",
+  soft_100 = "#f5f5f5",
+  soft_200 = "#e5e5e5",
+  soft_300 = "#d4d4d4",
+  soft_400 = "#a1a1a1",
+  soft_500 = "#737373",
+  soft_600 = "#525252",
+  soft_700 = "#404040",
+  soft_800 = "#262626",
+  soft_900 = "#171717",
+  soft_950 = "#0a0a0a",
 }
 
 M.get_palette = function(style)

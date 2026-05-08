@@ -7,13 +7,13 @@ function M.get(c, opts)
   -- stylua: ignore
   return {
     MiniTablineCurrent = { fg = c.fg_reversed, bg = c.bg_reversed },
-    MiniTablineVisible = { fg = c.fg, bg = c.bg_folded },
-    MiniTablineHidden = { fg = c.fg_muted, bg = c.bg_alt },
-    MiniTablineModifiedCurrent = { fg = c.fg_reversed, bg = c.amber[1] },
-    MiniTablineModifiedVisible = { fg = c.fg_reversed, bg = c.amber[3] },
-    MiniTablineModifiedHidden = { fg = c.fg_reversed, bg = c.rose[3] },
-    MiniTablineFill = { bg = c.bg },
-    MiniTablineTabpagesection = { fg = c.fg_strong, bg = c.bg_folded },
+    MiniTablineVisible = { fg = c.fg, bg = c.bg_statusline },
+    MiniTablineHidden = { fg = c.fg_muted, bg = c.bg_statusline },
+    MiniTablineModifiedCurrent = { fg = c.fg_reversed, bg = c.git.change },
+    MiniTablineModifiedVisible = { bg = c.bg_statusline, fg = c.git.change },
+    MiniTablineModifiedHidden = { bg = c.bg_statusline, fg = c.git.delete },
+    MiniTablineFill = { bg = c.bg_statusline },
+    MiniTablineTabpagesection = { fg = c.fg_strong, bg = c.bg_statusline },
     MiniTablineTrunc = { fg = c.fg_muted },
   }
 end

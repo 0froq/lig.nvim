@@ -34,8 +34,8 @@ function M.setup(opts)
   colors.bg_selection  = Util.blend_fg(colors.bg_alt, 0.95)
 
   colors.bg_folded     = Util.blend_fg(colors.bg_alt, 0.8)
-  colors.bg_search     = colors.amber[2]
-  colors.bg_substitute = colors.rose[2]
+  colors.bg_search     = colors.yellow[2]
+  colors.bg_substitute = colors.red[2]
   colors.bg_statusline = Util.blend_fg(colors.bg, 0.9)
 
 
@@ -45,59 +45,59 @@ function M.setup(opts)
   colors.shadow       = colors.fg_dim
 
   colors.mode         = {
-    normal = colors.emerald[2],
+    normal = colors.green[2],
     insert = colors.bg_reversed,
-    visual = colors.plum[2],
-    replace = colors.amber[2],
-    command = colors.coral[2],
+    visual = colors.magenta[2],
+    replace = colors.yellow[2],
+    command = colors.blue[2],
     other = colors.bg_highlight
   }
 
   colors.git          = {
-    add = colors.emerald[2],
-    delete = colors.rose[2],
-    change = colors.amber[2],
+    add = colors.green[2],
+    delete = colors.red[2],
+    change = colors.yellow[2],
     ignore = colors.fg_muted
   }
 
   colors.diag         = {
-    error = colors.rose[2],
-    warn  = colors.amber[2],
+    error = colors.red[2],
+    warn  = colors.yellow[2],
     info  = colors.cyan[2],
-    hint  = colors.emerald[2],
-    ok    = colors.moss[2]
+    hint  = colors.green[2],
+    ok    = colors.blue[2]
   }
 
   colors.msg          = {
-    success = colors.emerald[2],
-    failure = colors.rose[2],
-    warning = colors.amber[2],
+    success = colors.green[2],
+    failure = colors.red[2],
+    warning = colors.yellow[2],
     info    = colors.cyan[2],
   }
 
   colors.comments     = {
-    error   = colors.rose[2],
-    todo    = colors.iris[2],
-    warning = colors.amber[2],
+    error   = colors.red[2],
+    todo    = colors.blue[2],
+    warning = colors.yellow[2],
     info    = colors.cyan[2],
-    note    = colors.teal[2],
-    hint    = colors.emerald[2],
+    note    = colors.green[2],
+    hint    = colors.cyan[2],
   }
 
   colors.rainbow      = {
-    colors.coral[2],
+    colors.orange[2],
     colors.cyan[2],
-    colors.amber[2],
-    colors.moss[2],
-    colors.rose[2],
-    colors.iris[2],
-    colors.plum[2],
+    colors.red[2],
+    colors.blue[2],
+    colors.yellow[2],
+    colors.green[2],
+    colors.magenta[2],
   }
 
-  colors.struct       = colors.teal
-  colors.ref          = colors.azure
-  colors.action       = colors.coral
-  colors.member       = colors.sage
+  colors.struct       = colors.green
+  colors.ref          = colors.blue
+  colors.action       = colors.orange
+  colors.member       = colors.cyan
   colors.mono         = {
     colors.fg_strong,
     colors.fg,
@@ -108,17 +108,17 @@ function M.setup(opts)
   ---@class TerminalColors
   colors.terminal     = {
     black          = colors.bg,
-    black_bright   = Util.blend_fg(colors.bg, 0.8),
-    red            = colors.rose[2],
-    red_bright     = colors.rose[3],
-    green          = colors.emerald[2],
-    green_bright   = colors.emerald[3],
-    yellow         = colors.amber[2],
-    yellow_bright  = colors.amber[3],
-    blue           = colors.azure[2],
-    blue_bright    = colors.azure[3],
-    magenta        = colors.plum[2],
-    magenta_bright = colors.plum[3],
+    black_bright   = Util.blend_fg(colors.bg, 0.9),
+    red            = colors.red[2],
+    red_bright     = colors.red[3],
+    green          = colors.green[2],
+    green_bright   = colors.green[3],
+    yellow         = colors.yellow[2],
+    yellow_bright  = colors.yellow[3],
+    blue           = colors.blue[2],
+    blue_bright    = colors.blue[3],
+    magenta        = colors.magenta[2],
+    magenta_bright = colors.magenta[3],
     cyan           = colors.cyan[2],
     cyan_bright    = colors.cyan[3],
     white          = colors.fg,
@@ -157,8 +157,8 @@ function M.setup(opts)
     debug          = colors.action[2],
     macro          = colors.action[2],
 
-    special        = colors.rose[2],
-    specialChar    = colors.rose[2],
+    special        = colors.red[2],
+    specialChar    = colors.red[2],
   }
 
 
@@ -209,8 +209,8 @@ function M.setup(opts)
     end
   end
 
-  colors.accent1 = colors.teal[2]
-  colors.accent2 = colors.coral[2]
+  colors.accent1 = colors.green[2]
+  colors.accent2 = colors.orange[2]
 
   colors.none    = "NONE"
 
