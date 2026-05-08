@@ -18,17 +18,22 @@ A dark and light [Neovim](https://github.com/neovim/neovim) theme written in
 
 | Plugin | Source |
 | --- | --- |
+| [blink.cmp](https://github.com/saghen/blink.cmp) | [`blink`](lua/lig/groups/blink.lua) |
 | [dashboard-nvim](https://github.com/nvimdev/dashboard-nvim) | [`dashboard`](lua/lig/groups/dashboard.lua) |
-| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | [`gitsigns`](lua/oq/groups/gitsigns.lua) |
-| [mini.completion](https://github.com/nvim-mini/mini.completion) | [`mini_completion`](lua/oq/groups/mini_completion.lua) |
-| [mini.diff](https://github.com/nvim-mini/mini.diff) | [`mini_diff`](lua/oq/groups/mini_diff.lua) |
-| [mini.files](https://github.com/nvim-mini/mini.files) | [`mini_files`](lua/oq/groups/mini_files.lua) |
-| [mini.indentscope](https://github.com/nvim-mini/mini.indentscope) | [`mini_indentscope`](lua/oq/groups/mini_indentscope.lua) |
-| [mini.snippets](https://github.com/nvim-mini/mini.snippets) | [`mini_snippets`](lua/oq/groups/mini_snippets.lua) |
-| [mini.statusline](https://github.com/nvim-mini/mini.statusline) | [`mini_statusline`](lua/oq/groups/mini_statusline.lua) |
-| [mini.statusline](https://github.com/nvim-mini/mini.statusline) | [`mini_tabline`](lua/oq/groups/mini_tabline.lua) |
-| [noice.nvim](https://github.com/folke/noice.nvim) | [`noice`](lua/oq/groups/noice.lua) |
-| [which-key.nvim](https://github.com/folke/which-key.nvim) | [`which-key`](lua/oq/groups/which-key.lua) |
+| [fzf-lua](https://github.com/ibhagwan/fzf-lua) | [`fzf`](lua/lig/groups/fzf.lua) |
+| [gitsigns.nvim](https://github.com/lewis6991/gitsigns.nvim) | [`gitsigns`](lua/lig/groups/gitsigns.lua) |
+| [mini.clue](https://github.com/nvim-mini/mini.clue) | [`mini_clue`](lua/lig/groups/mini_clue.lua) |
+| [mini.completion](https://github.com/nvim-mini/mini.completion) | [`mini_completion`](lua/lig/groups/mini_completion.lua) |
+| [mini.cursorword](https://github.com/nvim-mini/mini.cursorword) | [`mini_cursorword`](lua/lig/groups/mini_cursorword.lua) |
+| [mini.diff](https://github.com/nvim-mini/mini.diff) | [`mini_diff`](lua/lig/groups/mini_diff.lua) |
+| [mini.files](https://github.com/nvim-mini/mini.files) | [`mini_files`](lua/lig/groups/mini_files.lua) |
+| [mini.indentscope](https://github.com/nvim-mini/mini.indentscope) | [`mini_indentscope`](lua/lig/groups/mini_indentscope.lua) |
+| [mini.jump2d](https://github.com/nvim-mini/mini.jump2d) | [`mini_jump2d`](lua/lig/groups/mini_jump2d.lua) |
+| [mini.snippets](https://github.com/nvim-mini/mini.snippets) | [`mini_snippets`](lua/lig/groups/mini_snippets.lua) |
+| [mini.statusline](https://github.com/nvim-mini/mini.statusline) | [`mini_statusline`](lua/lig/groups/mini_statusline.lua) |
+| [mini.statusline](https://github.com/nvim-mini/mini.statusline) | [`mini_tabline`](lua/lig/groups/mini_tabline.lua) |
+| [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim) | [`telescope`](lua/lig/groups/telescope.lua) |
+| [which-key.nvim](https://github.com/folke/which-key.nvim) | [`which-key`](lua/lig/groups/which-key.lua) |
 
 <!-- plugins:end -->
 
@@ -122,19 +127,17 @@ unless `setup` is explicitly called.
 ---@field on_highlights fun(highlights: lig.Highlights, colors: ColorScheme)
 M.defaults = {
   style = "dark",
-  light_style = "light",  -- The theme is used when the background is set to light
+  light_style = "light", -- The theme is used when the background is set to light
   mono = {
     enabled = false,
-  },           -- Use a monochromatic color scheme, disabling most syntax highlighting
+  },                      -- Use a monochromatic color scheme, disabling most syntax highlighting
   transparent = false,    -- Enable this to disable setting the background color
   terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
   styles = {
     -- Style to be applied to different syntax groups
     -- Value is any valid attr-list value for `:help nvim_set_hl`
-    comments = { italic = true },
-    keywords = { italic = true },
-    functions = {},
-    variables = {},
+    -- comments = { italic = true },
+    -- keywords = { italic = true },
     -- Background styles. Can be "dark", "transparent" or "normal"
     sidebars = "dark",  -- style for sidebars, see below
     floats = "dark",    -- style for floating windows
@@ -150,7 +153,7 @@ M.defaults = {
 
   --- You can override specific highlights to use other groups or a hex color
   --- function will be called with a Highlights and ColorScheme table
-  ---@param highlights oq.Highlights
+  ---@param highlights lig.Highlights
   ---@param colors ColorScheme
   on_highlights = function(highlights, colors) end,
 
