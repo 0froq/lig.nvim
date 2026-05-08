@@ -11,7 +11,7 @@ compose_cursor = "${fg_string}"
 scrollbar_thumb = "#a1a1a1"
 
 ansi = ["#0a0a0a", "#fa6a6a", "#6aca9a", "#faca6a", "#6a9afa", "#ca6a9a", "#6acaca", "#d4d4d4"]
-brights = ["#1e1e1e", "#964040", "#40795c", "#967940", "#405c96", "#79405c", "#407979", "#fafafa"]
+brights = ["#1e1e1e", "#fca6a6", "#a6dfc2", "#fcdfa6", "#a6c2fc", "#dfa6c2", "#a6dfdf", "#fafafa"]
 
 [colors.tab_bar]
 inactive_tab_edge = "#171717"

@@ -1,4 +1,4 @@
-palette = 0=#eeeeee
+palette = 0=#fafafa
 palette = 1=#fa6a6a
 palette = 2=#6aca9a
 palette = 3=#faca6a
@@ -6,16 +6,16 @@ palette = 4=#6a9afa
 palette = 5=#ca6a9a
 palette = 6=#6acaca
 palette = 7=#404040
-palette = 8=#dddddd
-palette = 9=#fca6a6
-palette = 10=#a6dfc2
-palette = 11=#fcdfa6
-palette = 12=#a6c2fc
-palette = 13=#dfa6c2
-palette = 14=#a6dfdf
+palette = 8=#e7e7e7
+palette = 9=#964040
+palette = 10=#40795c
+palette = 11=#967940
+palette = 12=#405c96
+palette = 13=#79405c
+palette = 14=#407979
 palette = 15=#0a0a0a
 
-background = #eeeeee
+background = #fafafa
 foreground = #404040
 cursor-color = #404040
 selection-background = #dddddd
