@@ -24,8 +24,8 @@ function M.generate(colors, groups, opts)
 hi clear
 let g:colors_name = "lig-%s"
   ]])
-    ---@diagnostic disable-next-line: undefined-field
-        :format(colors._style),
+      ---@diagnostic disable-next-line: undefined-field
+      :format(colors._style),
   }
 
   groups = vim.deepcopy(groups)

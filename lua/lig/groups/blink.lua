@@ -47,7 +47,7 @@ function M.get(c, opts)
   local lsp_kind = {}
 
   for _, kind in ipairs(kinds) do
-    lsp_kind['BlinkCmpKind' .. kind] = 'LspKind' .. kind
+    lsp_kind["BlinkCmpKind" .. kind] = "LspKind" .. kind
   end
 
   local hl = {

@@ -11,8 +11,8 @@ M.defaults = {
   light_style = "light", -- The theme is used when the background is set to light
   mono = {
     enabled = false,
-  },                      -- Use a monochromatic color scheme, disabling most syntax highlighting
-  transparent = false,    -- Enable this to disable setting the background color
+  }, -- Use a monochromatic color scheme, disabling most syntax highlighting
+  transparent = false, -- Enable this to disable setting the background color
   terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
   styles = {
     -- Style to be applied to different syntax groups
@@ -20,8 +20,8 @@ M.defaults = {
     -- comments = { italic = true },
     -- keywords = { italic = true },
     -- Background styles. Can be "dark", "transparent" or "normal"
-    sidebars = "dark",  -- style for sidebars, see below
-    floats = "dark",    -- style for floating windows
+    sidebars = "dark", -- style for sidebars, see below
+    floats = "dark", -- style for floating windows
   },
   day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Light** style. Number between 0 and 1, from dull to vibrant colors
   dim_inactive = false, -- dims inactive windows

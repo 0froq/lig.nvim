@@ -36,12 +36,12 @@ function M.setup()
     for style, style_name in pairs(styles) do
       local colors, groups, opts = lig.load({ style = style, plugins = { all = true } })
       local fname = extra
-          .. (info.subdir and "/" .. info.subdir .. "/" or "")
-          .. "/lig"
-          .. (info.sep or "_")
-          .. style
-          .. "."
-          .. info.ext
+        .. (info.subdir and "/" .. info.subdir .. "/" or "")
+        .. "/lig"
+        .. (info.sep or "_")
+        .. style
+        .. "."
+        .. info.ext
       fname = string.gsub(fname, "%.$", "") -- remove trailing dot when no extension
       colors["_upstream_url"] = "https://github.com/0froq/lig.nvim/raw/main/extras/" .. fname
       colors["_style_name"] = "LiG" .. style_name

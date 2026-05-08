@@ -1,5 +1,5 @@
 ---@diagnostic disable: undefined-global
-local Util = require('lig.util')
+local Util = require("lig.util")
 local M = {}
 
 local gen_triad = function(base)
@@ -12,23 +12,23 @@ end
 
 ---@class Colors
 local color = {
-  red = gen_triad('#fa6a6a'),
-  green = gen_triad('#6aca9a'),
-  yellow = gen_triad('#faca6a'),
-  blue = gen_triad('#6a9afa'),
-  magenta = gen_triad('#ca6a9a'),
-  cyan = gen_triad('#6acaca'),
+  red = gen_triad("#fa6a6a"),
+  green = gen_triad("#6aca9a"),
+  yellow = gen_triad("#faca6a"),
+  blue = gen_triad("#6a9afa"),
+  magenta = gen_triad("#ca6a9a"),
+  cyan = gen_triad("#6acaca"),
 
-  orange = gen_triad('#fa9a6a'),
-  azure = gen_triad('#0acafa'),
+  orange = gen_triad("#fa9a6a"),
+  azure = gen_triad("#0acafa"),
 }
 
 ---@class GrayScale
 local gray_scale = {
-  black    = "#000000",
-  white    = "#ffffff",
+  black = "#000000",
+  white = "#ffffff",
 
-  soft_50  = "#fafafa",
+  soft_50 = "#fafafa",
   soft_100 = "#f5f5f5",
   soft_200 = "#e5e5e5",
   soft_300 = "#d4d4d4",
