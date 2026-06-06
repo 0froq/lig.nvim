@@ -1,4 +1,4 @@
-palette = 0=#161616
+palette = 0=#141414
 palette = 1=#fa6a6a
 palette = 2=#6aca9a
 palette = 3=#faca6a
@@ -6,16 +6,16 @@ palette = 4=#6a9afa
 palette = 5=#ca6a9a
 palette = 6=#6acaca
 palette = 7=#d4d4d4
-palette = 8=#292929
-palette = 9=#964040
-palette = 10=#40795c
-palette = 11=#967940
-palette = 12=#405c96
-palette = 13=#79405c
-palette = 14=#407979
+palette = 8=#272727
+palette = 9=#9a4444
+palette = 10=#447d60
+palette = 11=#9a7d44
+palette = 12=#44609a
+palette = 13=#7d4460
+palette = 14=#447d7d
 palette = 15=#fafafa
 
-background = #161616
+background = #141414
 foreground = #d4d4d4
 cursor-color = #d4d4d4
 selection-background = #202020
