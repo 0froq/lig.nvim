@@ -6,6 +6,11 @@ Contains all major syntax elements for testing syntax highlighting
 """
 
 # =========== 1. Module and Package Imports ===========
+import multiprocessing
+import threading
+import concurrent.futures
+from typing import TypeVar, Generic, Sequence, Mapping, Iterator
+import asyncio
 import os
 import sys
 import re
@@ -50,6 +55,8 @@ my_set = {1, 2, 3, 3, 2}  # Duplicate elements will be removed
 
 # =========== 3. Control Flow Statements ===========
 # if/elif/else statements
+
+
 def control_flow_example(x: int) -> str:
     """Control flow example function"""
     if x > 100:
@@ -62,8 +69,9 @@ def control_flow_example(x: int) -> str:
         result = "Zero"
     else:
         result = "Negative number"
-    
+
     return result
+
 
 # for loop
 for i in range(10):
@@ -89,23 +97,26 @@ square_dict = {x: x**2 for x in range(5)}
 unique_lengths = {len(x) for x in ["apple", "banana", "cherry"]}
 
 # =========== 4. Function Definitions ===========
+
+
 def simple_function(param1, param2=10):
     """Simple function docstring"""
     return param1 + param2
 
+
 def type_annotated_func(
-    name: str, 
-    age: int, 
+    name: str,
+    age: int,
     scores: List[float]
 ) -> Dict[str, Any]:
     """
     Function with type annotations
-    
+
     Args:
         name: User name
         age: User age
         scores: List of scores
-    
+
     Returns:
         Dictionary containing user information
     """
@@ -117,6 +128,8 @@ def type_annotated_func(
     }
 
 # Generator function
+
+
 def fibonacci_generator(n: int):
     """Fibonacci sequence generator"""
     a, b = 0, 1
@@ -124,8 +137,10 @@ def fibonacci_generator(n: int):
         yield a
         a, b = b, a + b
 
+
 # Async function
-import asyncio
+
+
 async def async_example(url: str):
     """Async function example"""
     import aiohttp
@@ -134,58 +149,63 @@ async def async_example(url: str):
             return await response.text()
 
 # Lambda expressions
-add = lambda x, y: x + y
-square = lambda x: x**2
+
+
+def add(x, y): return x + y
+def square(x): return x**2
 
 # =========== 5. Class Definitions ===========
+
+
 class BaseClass:
     """Base class"""
     class_var = "Class variable"
-    
+
     def __init__(self, name: str):
         self.name = name  # Instance variable
         self._protected_var = "Protected variable"
         self.__private_var = "Private variable"
-    
+
     def instance_method(self):
         """Instance method"""
         return f"Instance method: {self.name}"
-    
+
     @classmethod
     def class_method(cls):
         """Class method"""
         return f"Class method: {cls.class_var}"
-    
+
     @staticmethod
     def static_method():
         """Static method"""
         return "Static method"
-    
+
     @property
     def name_property(self):
         """Property decorator"""
         return self.name
-    
+
     @name_property.setter
     def name_property(self, value):
         self.name = value
 
+
 class DerivedClass(BaseClass):
     """Derived class"""
-    
+
     def __init__(self, name: str, extra: str):
         super().__init__(name)  # Call parent class initializer
         self.extra = extra
-    
+
     def instance_method(self):
         """Override parent class method"""
         base_result = super().instance_method()
         return f"{base_result} + {self.extra}"
-    
+
     def __str__(self):
         """Special method: string representation"""
         return f"DerivedClass(name={self.name}, extra={self.extra})"
-    
+
     def __add__(self, other):
         """Special method: addition operation"""
         if isinstance(other, DerivedClass):
@@ -196,6 +216,8 @@ class DerivedClass(BaseClass):
         return NotImplemented
 
 # =========== 6. Exception Handling ===========
+
+
 def exception_example(filename: str):
     """Exception handling example"""
     try:
@@ -215,20 +237,25 @@ def exception_example(filename: str):
         print("File read successfully")
     finally:
         print("Cleanup operation")
-    
+
     return result
 
 # Custom exception
+
+
 class CustomError(Exception):
     """Custom exception class"""
+
     def __init__(self, message: str, code: int):
         super().__init__(message)
         self.code = code
-    
+
     def __str__(self):
         return f"[Error code {self.code}] {super().__str__()}"
 
 # =========== 7. Decorators ===========
+
+
 def simple_decorator(func):
     """Simple decorator"""
     def wrapper(*args, **kwargs):
@@ -237,6 +264,7 @@ def simple_decorator(func):
         print(f"Function {func.__name__} completed")
         return result
     return wrapper
+
 
 def parametrized_decorator(prefix: str = "DEBUG"):
     """Parameterized decorator"""
@@ -250,18 +278,23 @@ def parametrized_decorator(prefix: str = "DEBUG"):
     return decorator
 
 # Class decorator
+
+
 class ClassDecorator:
     """Class decorator"""
+
     def __init__(self, func):
         self.func = func
         self.call_count = 0
-    
+
     def __call__(self, *args, **kwargs):
         self.call_count += 1
         print(f"Call #{self.call_count} of {self.func.__name__}")
         return self.func(*args, **kwargs)
 
 # Using decorators
+
+
 @simple_decorator
 @parametrized_decorator("INFO")
 @ClassDecorator
@@ -270,20 +303,24 @@ def decorated_function(x: int) -> int:
     return x * 2
 
 # =========== 8. Context Managers ===========
+
+
 class CustomContextManager:
     """Custom context manager"""
+
     def __init__(self, name: str):
         self.name = name
-    
+
     def __enter__(self):
         print(f"Entering context: {self.name}")
         return self
-    
+
     def __exit__(self, exc_type, exc_val, exc_tb):
         print(f"Exiting context: {self.name}")
         if exc_type:
             print(f"Exception occurred: {exc_type.__name__}: {exc_val}")
         return False  # Do not suppress exception
+
 
 # Using context manager
 with CustomContextManager("test") as cm:
@@ -291,34 +328,34 @@ with CustomContextManager("test") as cm:
     # raise ValueError("Test exception")  # Uncomment to test exception
 
 # =========== 9. Type Hints and Generics ===========
-from typing import TypeVar, Generic, Sequence, Mapping, Iterator
 
 T = TypeVar('T')  # Type variable
 K = TypeVar('K')  # Key type variable
 V = TypeVar('V')  # Value type variable
 
+
 class GenericContainer(Generic[T]):
     """Generic container class"""
+
     def __init__(self, value: T):
         self.value = value
-    
+
     def get_value(self) -> T:
         return self.value
-    
+
     def transform(self, func: Callable[[T], V]) -> 'GenericContainer[V]':
         return GenericContainer(func(self.value))
+
 
 # Using generics
 int_container = GenericContainer(42)
 str_container = GenericContainer("hello")
 
 # =========== 10. Async and Concurrency ===========
-import concurrent.futures
-import threading
-import multiprocessing
 
 # Thread lock
 lock = threading.Lock()
+
 
 def thread_safe_increment():
     """Thread-safe increment function"""
@@ -328,11 +365,15 @@ def thread_safe_increment():
         return counter
 
 # Multithreading example
+
+
 def run_threads():
     with concurrent.futures.ThreadPoolExecutor(max_workers=3) as executor:
         futures = [executor.submit(thread_safe_increment) for _ in range(5)]
-        results = [f.result() for f in concurrent.futures.as_completed(futures)]
+        results = [f.result()
+                   for f in concurrent.futures.as_completed(futures)]
     return results
+
 
 # =========== 11. Metaprogramming ===========
 # Dynamic class creation
@@ -370,6 +411,8 @@ if (n := len(my_list)) > 5:
     print(f"List length {n} is greater than 5")
 
 # Match statement (Python 3.10+)
+
+
 def match_example(value):
     """Pattern matching example"""
     match value:
@@ -388,36 +431,38 @@ def match_example(value):
 # Single line comment
 # This is a single line comment
 
+
 """
 This is a multi-line comment
 It can span multiple lines
 Typically used for module-level documentation
 """
 
+
 class DocumentedClass:
     """
     A class with detailed documentation
-    
+
     Attributes:
         attribute1: First attribute
         attribute2: Second attribute
     """
-    
+
     def documented_method(self, param1: int, param2: str) -> bool:
         """
         Method with detailed documentation
-        
+
         Args:
             param1: First parameter, must be integer
             param2: Second parameter, must be string
-        
+
         Returns:
             Boolean indicating whether operation succeeded
-        
+
         Raises:
             ValueError: Raised when parameter is invalid
             TypeError: Raised when parameter type is incorrect
-        
+
         Examples:
             >>> obj = DocumentedClass()
             >>> obj.documented_method(1, "test")
@@ -428,6 +473,7 @@ class DocumentedClass:
         if param1 < 0:
             raise ValueError("param1 cannot be negative")
         return True
+
 
 # =========== 14. Special Syntax ===========
 # Chained comparison
@@ -448,13 +494,15 @@ del x
 assert len(my_list) > 0, "List cannot be empty"
 
 # =========== 15. Practical Usage Examples ===========
+
+
 def process_data(
     data: List[Dict[str, Any]],
     filter_func: Optional[Callable] = None
 ) -> pd.DataFrame:
     """
     Process data and return DataFrame
-    
+
     This is a comprehensive example using various Python syntax elements
     """
     try:
@@ -463,22 +511,23 @@ def process_data(
             filtered_data = [item for item in data if filter_func(item)]
         else:
             filtered_data = data
-        
+
         if not filtered_data:
             raise CustomError("No data to process", 1001)
-        
+
         # Convert to DataFrame
         df = pd.DataFrame(filtered_data)
-        
+
         # Add processing time column
         current_time = datetime.now()
         df['processed_at'] = current_time.strftime("%Y-%m-%d %H:%M:%S")
-        
+
         # Use lambda for transformation
-        df['id_squared'] = df.get('id', 0).apply(lambda x: x**2 if pd.notnull(x) else 0)
-        
+        df['id_squared'] = df.get('id', 0).apply(
+            lambda x: x**2 if pd.notnull(x) else 0)
+
         return df
-    
+
     except CustomError as e:
         print(f"Custom error: {e}")
         return pd.DataFrame()
@@ -487,33 +536,36 @@ def process_data(
         raise
 
 # =========== 16. Main Program Entry ===========
+
+
 def main():
     """Main function"""
     print("=== Python Syntax Highlighting Test ===")
-    
+
     # Test various syntax elements
     obj = DerivedClass("Test object", "Extra info")
     print(obj)
-    
+
     # Test decorators
     print(decorated_function(21))
-    
+
     # Test generator
     fib = list(fibonacci_generator(10))
     print(f"Fibonacci sequence: {fib}")
-    
+
     # Test exceptions
     try:
         exception_example("non_existent_file.txt")
     except:
         pass
-    
+
     # Test match statement
     test_cases = [0, 2, [1, 2], {"name": "Alice", "age": 30}, "other"]
     for case in test_cases:
         print(f"Match {case}: {match_example(case)}")
-    
+
     print("=== Test completed ===")
+
 
 if __name__ == "__main__":
     main()

@@ -106,7 +106,7 @@ return {
           end,
           extmark_opts = function(_, _, data)
             return {
-              virt_text = { { "⬤ ", data.hl_group } },
+              virt_text = { { "● ", data.hl_group } },
               virt_text_pos = "inline",
               priority = 2000,
             }

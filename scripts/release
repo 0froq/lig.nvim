@@ -1,0 +1,185 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+usage() {
+  cat <<'EOF'
+Usage:
+  scripts/release <version> [--push] [--skip-tests] [--skip-build] [--skip-docs]
+
+Examples:
+  scripts/release 0.1.3
+  scripts/release 0.1.3 --push
+
+What it does:
+  1. Requires a clean working tree.
+  2. Verifies the current branch is up to date with its upstream.
+  3. Updates lua/lig/config.lua, .github/.release-please-manifest.json, and CHANGELOG.md.
+  4. Runs scripts/test, scripts/docs, and scripts/build unless skipped.
+  5. Creates a release commit and annotated tag v<version>.
+  6. Pushes branch and tag only when --push is passed.
+EOF
+}
+
+log() {
+  printf '\033[1;34m[release]\033[0m %s\n' "$*"
+}
+
+fail() {
+  printf '\033[1;31m[release]\033[0m %s\n' "$*" >&2
+  exit 1
+}
+
+version=""
+push=false
+skip_tests=false
+skip_build=false
+skip_docs=false
+
+while (($#)); do
+  case "$1" in
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    --push)
+      push=true
+      ;;
+    --skip-tests)
+      skip_tests=true
+      ;;
+    --skip-build)
+      skip_build=true
+      ;;
+    --skip-docs)
+      skip_docs=true
+      ;;
+    --*)
+      fail "Unknown option: $1"
+      ;;
+    *)
+      if [[ -n "$version" ]]; then
+        fail "Unexpected argument: $1"
+      fi
+      version="$1"
+      ;;
+  esac
+  shift
+done
+
+[[ -n "$version" ]] || { usage; exit 1; }
+[[ "$version" =~ '^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$' ]] || fail "Invalid semver: $version"
+
+tag="v$version"
+root="$(git rev-parse --show-toplevel 2>/dev/null)" || fail "Not inside a git repository"
+cd "$root"
+
+[[ -d .git/rebase-merge || -d .git/rebase-apply ]] && fail "A rebase is in progress. Finish it before releasing."
+[[ -z "$(git status --porcelain)" ]] || fail "Working tree is not clean. Commit or stash changes before releasing."
+
+git rev-parse --verify "$tag" >/dev/null 2>&1 && fail "Local tag already exists: $tag"
+if git ls-remote --exit-code --tags origin "refs/tags/$tag" >/dev/null 2>&1; then
+  fail "Remote tag already exists: $tag"
+fi
+
+branch="$(git branch --show-current)"
+[[ -n "$branch" ]] || fail "Detached HEAD. Checkout a branch before releasing."
+
+upstream="$(git rev-parse --abbrev-ref --symbolic-full-name '@{u}' 2>/dev/null || true)"
+if [[ -n "$upstream" ]]; then
+  log "Fetching upstream $upstream"
+  git fetch "${upstream%%/*}" "${upstream#*/}" --tags
+
+  local_head="$(git rev-parse HEAD)"
+  upstream_head="$(git rev-parse "$upstream")"
+  merge_base="$(git merge-base HEAD "$upstream")"
+
+  [[ "$local_head" == "$upstream_head" ]] || {
+    if [[ "$local_head" == "$merge_base" ]]; then
+      fail "Branch is behind $upstream. Pull/rebase first."
+    elif [[ "$upstream_head" == "$merge_base" ]]; then
+      fail "Branch is ahead of $upstream. Push or use --push after release from an up-to-date branch."
+    else
+      fail "Branch has diverged from $upstream. Resolve before releasing."
+    fi
+  }
+else
+  log "No upstream configured; skipping upstream sync check"
+fi
+
+log "Updating version to $version"
+python3 - "$version" <<'PY'
+from pathlib import Path
+import json
+import re
+import sys
+from datetime import date
+
+version = sys.argv[1]
+
+config = Path("lua/lig/config.lua")
+text = config.read_text()
+new_text, count = re.subn(r'M\.version = "[^"]+" -- x-release-please-version', f'M.version = "{version}" -- x-release-please-version', text)
+if count != 1:
+    raise SystemExit("failed to update lua/lig/config.lua version")
+config.write_text(new_text)
+
+manifest = Path(".github/.release-please-manifest.json")
+data = json.loads(manifest.read_text())
+data["."] = version
+manifest.write_text(json.dumps(data, indent=2) + "\n")
+
+changelog = Path("CHANGELOG.md")
+old = changelog.read_text() if changelog.exists() else "# Changelog\n"
+heading = f"## {version} - "
+if heading not in old:
+    lines = [
+        "# Changelog",
+        "",
+        f"## {version} - {date.today().isoformat()}",
+        "",
+        "- Release version update.",
+        "",
+    ]
+    body = old.split("\n", 2)
+    rest = body[2] if len(body) >= 3 and body[0].strip() == "# Changelog" else old.removeprefix("# Changelog").lstrip("\n")
+    changelog.write_text("\n".join(lines) + rest)
+PY
+
+if ! $skip_tests; then
+  log "Running tests"
+  scripts/test
+fi
+
+if ! $skip_docs; then
+  log "Generating docs"
+  scripts/docs
+fi
+
+if ! $skip_build; then
+  log "Generating extras"
+  scripts/build
+fi
+
+[[ -z "$(git status --porcelain)" ]] && fail "Version update produced no changes. Is $version already released?"
+
+git add .github/.release-please-manifest.json CHANGELOG.md lua/lig/config.lua doc extras
+
+git diff --cached --quiet && fail "No release changes staged"
+
+git diff --cached --check
+
+log "Creating release commit"
+git commit -m "chore(release): bump version to $version"
+
+log "Creating tag $tag"
+git tag -a "$tag" -m "$tag"
+
+if $push; then
+  log "Pushing $branch and $tag"
+  git push origin "$branch"
+  git push origin "$tag"
+else
+  log "Release commit and tag created locally. Push with:"
+  printf '  git push origin %s\n' "$branch"
+  printf '  git push origin %s\n' "$tag"
+fi
