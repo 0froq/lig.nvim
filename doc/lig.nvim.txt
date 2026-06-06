@@ -1,5 +1,5 @@
 *lig.nvim.txt*                                                   lig.nvim docs
-                                        For Neovim    Last change: 2026 May 08
+                                       For Neovim    Last change: 2026 June 06
 
 ==============================================================================
 Table of Contents                                 *lig.nvim-table-of-contents*
