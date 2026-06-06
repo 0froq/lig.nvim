@@ -183,8 +183,8 @@ hi Search guibg=#faf0dd
 hi SignColumn guibg=#fafafa guifg=#a1a1a1
 hi SnippetTabstop gui=bold guibg=NONE guifg=#6aca9a
 hi SnippetTabstopActive gui=bold guibg=NONE guifg=#6aca9a
-hi Special guibg=NONE guifg=#9fbcf5
-hi SpecialChar guibg=NONE guifg=#9fbcf5
+hi Special guibg=NONE guifg=#a4c0fa
+hi SpecialChar guibg=NONE guifg=#a4c0fa
 hi SpecialComment gui=italic guibg=NONE guifg=#a1a1a1
 hi SpecialKey guibg=NONE guifg=#a1a1a1
 hi SpellBad gui=undercurl guibg=NONE guisp=#fa6a6a
@@ -210,7 +210,7 @@ hi TermCursor guibg=#fafafa guifg=#404040
 hi Title gui=bold guibg=NONE guifg=#0a0a0a
 hi Todo guibg=#6a9afa guifg=#f5f5f5
 hi Type guibg=NONE guifg=#5976b0
-hi Typedef guibg=NONE guifg=#9fbcf5
+hi Typedef guibg=NONE guifg=#a4c0fa
 hi Underlined gui=underline guibg=NONE
 hi Variable guibg=NONE guifg=#0a0a0a
 hi Visual guibg=#ececec

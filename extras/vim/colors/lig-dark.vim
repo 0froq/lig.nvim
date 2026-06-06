@@ -209,7 +209,7 @@ hi Tag guibg=NONE guifg=#6aca9a
 hi TermCursor guibg=#0a0a0a guifg=#d4d4d4
 hi Title gui=bold guibg=NONE guifg=#fafafa
 hi Todo guibg=#6a9afa guifg=#171717
-hi Type guibg=NONE guifg=#48649e
+hi Type guibg=NONE guifg=#45629b
 hi Typedef guibg=NONE guifg=#94b1eb
 hi Underlined gui=underline guibg=NONE
 hi Variable guibg=NONE guifg=#fafafa
