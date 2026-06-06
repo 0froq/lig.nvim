@@ -1,0 +1,115 @@
+# Theme template
+
+lig.nvim is split into two layers:
+
+- `lua/lig/colors/source.lua`: theme-specific color input.
+- `lua/lig/colors/template.lua`: reusable palette, semantic color, UI color, syntax role, terminal color, and style derivation logic.
+
+The intent is that a future theme can keep the highlight groups, plugin adapters, and extras generators unchanged, and mostly edit only `source.lua`.
+
+## Color input
+
+`lua/lig/colors/source.lua` contains only raw theme colors.
+
+### Accents
+
+Each accent is a single base hex color. The template expands it to a triad:
+
+```lua
+gen_triad(base) = {
+  blend_fg(base, 0.6),
+  base,
+  blend_bg(base, 0.6),
+}
+```
+
+For light styles, the triad is reversed so existing highlight rules can continue using the same indexes.
+
+Current semantic use:
+
+| Accent | Main roles |
+| --- | --- |
+| `red` | errors, deletions, substitute background, special chars |
+| `green` | success, additions, hints, primary accent, structure roles |
+| `yellow` | warnings, changes, search background, replace mode |
+| `blue` | references, constants, numbers, todo comments, command mode |
+| `magenta` | visual mode |
+| `cyan` | members, info messages, hint/info comments |
+| `orange` | actions, functions, methods, secondary accent |
+| `azure` | reserved accent available to downstream overrides |
+
+### Neutral scale
+
+The neutral scale describes the non-chromatic surface and text ladder:
+
+- `soft_50` to `soft_950`: lightest to darkest neutral values.
+- `black` / `white`: optional absolute endpoints.
+
+The template derives backgrounds, foregrounds, muted text, dim text, reversed text, float surfaces, statusline, selection, borders, dividers, and shadows from this scale.
+
+## Template layer
+
+`lua/lig/colors/template.lua` owns the reusable behavior:
+
+- accent triad generation.
+- light-style accent triad reversal.
+- `dark`, `dark-soft`, `light`, and `light-soft` UI surface derivation.
+- diagnostics, git, messages, comments, rainbow, terminal colors.
+- semantic roles consumed by highlight groups:
+  - `c.struct`
+  - `c.action`
+  - `c.ref`
+  - `c.member`
+  - `c.mono`
+  - `c.git`
+  - `c.diag`
+  - `c.comments`
+  - `c.terminal`
+- syntax token colors and mono-mode token handling.
+
+The style modules are thin wrappers:
+
+- `lua/lig/colors/dark.lua`
+- `lua/lig/colors/dark-soft.lua`
+- `lua/lig/colors/light.lua`
+- `lua/lig/colors/light-soft.lua`
+
+`lua/lig/colors/palette.lua` remains as a compatibility wrapper around the template palette helpers.
+
+## Creating a new theme
+
+1. Copy or replace `lua/lig/colors/source.lua`.
+2. Change only `M.accents` and `M.neutrals` first.
+3. Keep accent names stable unless you also update the template role mapping.
+4. Load all four styles:
+
+   ```vim
+   :colorscheme lig-dark
+   :colorscheme lig-dark-soft
+   :colorscheme lig-light
+   :colorscheme lig-light-soft
+   ```
+
+5. Generate extras with `scripts/build`.
+6. Only edit `template.lua` if the new theme needs a different color model, not merely different colors.
+
+## Verifying output stability
+
+To verify a refactor preserves the current theme:
+
+1. Capture `require("lig.colors").setup({ style = style })` and `require("lig.groups").setup(colors, opts)` for:
+   - `dark`
+   - `dark-soft`
+   - `light`
+   - `light-soft`
+2. Apply the refactor.
+3. Capture the same tables again.
+4. Compare the decoded tables recursively.
+5. Run tests and extras generation:
+
+   ```sh
+   scripts/test
+   scripts/build
+   ```
+
+For this extraction, the four style color and highlight-group tables were compared against a pre-refactor baseline and matched exactly.

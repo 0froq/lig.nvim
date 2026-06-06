@@ -1,7 +1,7 @@
 ---@diagnostic disable: undefined-global
 local M = {}
 
-M.version = "0.0.1" -- x-release-please-version
+M.version = "0.1.2" -- x-release-please-version
 
 ---@class lig.Config
 ---@field on_colors fun(colors: ColorScheme)
