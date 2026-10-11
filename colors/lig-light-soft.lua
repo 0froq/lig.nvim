@@ -1,3 +1,1 @@
-require("lig").load({
-  style = "light-soft",
-})
+require("lig").load({ style = "light-paper" })

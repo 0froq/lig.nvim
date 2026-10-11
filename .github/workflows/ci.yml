@@ -1,17 +1,26 @@
-name: CI
+name: Native distribution
 
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+
 jobs:
-  ci:
-    permissions:
-      contents: write
-      pull-requests: write
-    uses: folke/github/.github/workflows/ci.yml@main
-    secrets: inherit
-    with:
-      plugin: lig.nvim
-      repo: 0froq/lig.nvim
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        neovim: [v0.10.4, v0.12.4]
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - name: Install Neovim
+        env:
+          NEOVIM_VERSION: ${{ matrix.neovim }}
+        run: |
+          curl --fail --location --retry 3 "https://github.com/neovim/neovim/releases/download/$NEOVIM_VERSION/nvim-linux-x86_64.tar.gz" -o "$RUNNER_TEMP/nvim.tar.gz"
+          tar -xzf "$RUNNER_TEMP/nvim.tar.gz" -C "$RUNNER_TEMP"
+          echo "$RUNNER_TEMP/nvim-linux-x86_64/bin" >> "$GITHUB_PATH"
+      - run: python3 scripts/verify
