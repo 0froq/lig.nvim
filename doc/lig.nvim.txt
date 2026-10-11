@@ -1,299 +1,41 @@
-*lig.nvim.txt*                                                   lig.nvim docs
-                                       For Neovim    Last change: 2026 June 06
+*lig.nvim.txt*                 LiG for Neovim                         *lig.nvim*
 
-==============================================================================
-Table of Contents                                 *lig.nvim-table-of-contents*
+LiG uses shared OKLCH tokens from https://github.com/0froq/lig.
+Requires Neovim 0.10+. See README.md for full configuration and migration notes.
 
-1. LiG.nvim                                                |lig.nvim-lig.nvim|
-  - Features                                      |lig.nvim-lig.nvim-features|
-  - Requirements                              |lig.nvim-lig.nvim-requirements|
-  - Installation                              |lig.nvim-lig.nvim-installation|
-  - Usage                                            |lig.nvim-lig.nvim-usage|
-  - Configuration                            |lig.nvim-lig.nvim-configuration|
-  - Overriding Colors & Highlight Groups|lig.nvim-lig.nvim-overriding-colors-&-highlight-groups|
-  - Extras                                          |lig.nvim-lig.nvim-extras|
-  - Contributing                              |lig.nvim-lig.nvim-contributing|
+INSTALLATION                                                    *lig-install*
 
-==============================================================================
-1. LiG.nvim                                                *lig.nvim-lig.nvim*
-
-A dark and light Neovim <https://github.com/neovim/neovim> theme written in Lua
-<https://www.lua.org> forked from the tokyonight.nvim
-<https://github.com/folke/tokyonight.nvim> theme.
-
-
-FEATURES                                          *lig.nvim-lig.nvim-features*
-
-- Supports the latest Neovim <https://github.com/neovim/neovim>
-    0.9.0 <https://github.com/neovim/neovim/releases/tag/v0.9.0> features.
-- Terminal colors.
-- Provides lig <https://github.com/0froq/lig.nvim>
-    |lig.nvim-extras| for numerous other applications.
-
-Supported Plugins ~
-
-  -----------------------------------------------------------------------
-  Plugin                              Source
-  ----------------------------------- -----------------------------------
-  blink.cmp                           blink
-
-  dashboard-nvim                      dashboard
-
-  fzf-lua                             fzf
-
-  gitsigns.nvim                       gitsigns
-
-  mini.clue                           mini_clue
-
-  mini.completion                     mini_completion
-
-  mini.cursorword                     mini_cursorword
-
-  mini.diff                           mini_diff
-
-  mini.files                          mini_files
-
-  mini.indentscope                    mini_indentscope
-
-  mini.jump2d                         mini_jump2d
-
-  mini.snippets                       mini_snippets
-
-  mini.statusline                     mini_statusline
-
-  mini.statusline                     mini_tabline
-
-  telescope.nvim                      telescope
-
-  which-key.nvim                      which-key
-  -----------------------------------------------------------------------
-Extras ~
-
-  -----------------------------------------------------------------------
-  Tool                                Extra
-  ----------------------------------- -----------------------------------
-  Ghostty                             extras/ghostty
-
-  Kitty                               extras/kitty
-
-  Vim                                 extras/vim
-
-  WezTerm                             extras/wezterm
-  -----------------------------------------------------------------------
-
-REQUIREMENTS                                  *lig.nvim-lig.nvim-requirements*
-
-- Neovim <https://github.com/neovim/neovim> >=
-    0.8.0 <https://github.com/neovim/neovim/releases/tag/v0.8.0>
-
-
-INSTALLATION                                  *lig.nvim-lig.nvim-installation*
-
-Install the theme with your preferred package manager, such as folke/lazy.nvim
-<https://github.com/folke/lazy.nvim>:
-
->lua
-    {
-      "0froq/lig.nvim",
-      lazy = false,
-      priority = 1000,
-      opts = {},
-    }
+Use 0froq/lig.nvim with your plugin manager, then: >lua
+    require("lig").setup({ style = "dark" })
+    vim.cmd.colorscheme("lig")
 <
+VARIANTS                                                         *lig-styles*
 
+    lig-dark            lig-light
+    lig-dark-paper      lig-light-paper
 
-USAGE                                                *lig.nvim-lig.nvim-usage*
+Without an explicit style, lig follows 'background'. Changing 'background'
+retains the standard/paper family and remembers previously selected variants.
+Old lig-dark-soft / lig-light-soft entrypoints redirect to the paper variants.
 
->lua
-    vim.cmd[[colorscheme lig]]
-    -- or specifically for one of the styles:
-    -- vim.cmd[[colorscheme lig-dark]] -- default
-    -- vim.cmd[[colorscheme lig-dark-soft]]
-    -- vim.cmd[[colorscheme lig-light]]
-    -- vim.cmd[[colorscheme lig-light-soft]]
-<
+CONFIGURATION                                                    *lig-config*
 
-Some plugins need extra configuration to work with **lig**.
+Call setup before loading. Supported options include style, light_style,
+transparent, terminal_colors, styles (comments/keywords/variables/functions/
+types), plugins, lualine_bold, on_tokens and on_highlights.
 
-Click here for more details ~
+on_tokens(tokens) receives resolved tokens, e.g. tokens["text.primary"]. Direct
+aliases follow overrides; mix/offset expressions are not recalculated.
+on_highlights(groups, tokens) receives native nvim_set_hl attributes.
 
+The old on_colors hook and enabled mono profile produce migration errors. The
+old cache/day_brightness/dim_inactive and sidebar/float style options are retired.
 
-LUALINE ~
+STATUSLINES                                                   *lig-statusline*
 
->lua
-    -- Lua
-    require('lualine').setup {
-      options = {
-        -- ... your lualine config
-        theme = 'lig'
-        -- ... your lualine config
-      }
-    }
-<
-
-
-CONFIGURATION                                *lig.nvim-lig.nvim-configuration*
-
-
-  [!IMPORTANT] Set the configuration **BEFORE** loading the color scheme with
-  `colorscheme lig`.
-The theme offers four styles: **dark**, **dark-soft**, **light**, and
-**light-soft**.
-
-lig <https://github.com/0froq/lig.nvim> uses the default options, unless
-`setup` is explicitly called.
-
-Default Options ~
-
->lua
-    ---@class lig.Config
-    ---@field on_colors fun(colors: ColorScheme)
-    ---@field on_highlights fun(highlights: lig.Highlights, colors: ColorScheme)
-    M.defaults = {
-      style = "dark",
-      light_style = "light", -- The theme is used when the background is set to light
-      mono = {
-        enabled = false,
-      }, -- Use a monochromatic color scheme, disabling most syntax highlighting
-      transparent = false, -- Enable this to disable setting the background color
-      terminal_colors = true, -- Configure the colors used when opening a `:terminal` in Neovim
-      styles = {
-        -- Style to be applied to different syntax groups
-        -- Value is any valid attr-list value for `:help nvim_set_hl`
-        -- comments = { italic = true },
-        -- keywords = { italic = true },
-        -- Background styles. Can be "dark", "transparent" or "normal"
-        sidebars = "dark", -- style for sidebars, see below
-        floats = "dark", -- style for floating windows
-      },
-      day_brightness = 0.3, -- Adjusts the brightness of the colors of the **Light** style. Number between 0 and 1, from dull to vibrant colors
-      dim_inactive = false, -- dims inactive windows
-      lualine_bold = false, -- When `true`, section headers in the lualine theme will be bold
-    
-      --- You can override specific color groups to use other groups or a hex color
-      --- function will be called with a ColorScheme table
-      ---@param colors ColorScheme
-      on_colors = function(colors) end,
-    
-      --- You can override specific highlights to use other groups or a hex color
-      --- function will be called with a Highlights and ColorScheme table
-      ---@param highlights lig.Highlights
-      ---@param colors ColorScheme
-      on_highlights = function(highlights, colors) end,
-    
-      cache = false, -- When set to true, the theme will be cached for better performance
-    
-      ---@type table<string, boolean|{enabled:boolean}>
-      plugins = {
-        -- enable all plugins when not using lazy.nvim
-        -- set to false to manually enable/disable plugins
-        all = package.loaded.lazy == nil,
-        -- uses your plugin manager to automatically enable needed plugins
-        -- currently only lazy.nvim is supported
-        auto = true,
-        -- add any plugins here that you want to enable
-        -- for all possible plugins, see:
-        --   * https://github.com/0froq/lig.nvim/tree/main/lua/lig/groups
-        -- telescope = true,
-      },
-    }
-<
-
-
-OVERRIDING COLORS & HIGHLIGHT GROUPS*lig.nvim-lig.nvim-overriding-colors-&-highlight-groups*
-
-How the highlight groups are calculated:
-
-1. `colors` are determined based on your configuration, with the ability to
-override them using `config.on_colors(colors)`.
-2. These `colors` are utilized to generate the highlight groups.
-3. `config.on_highlights(highlights, colors)` can be used to override highlight
-groups.
-
-For default values of `colors` and `highlights`, please consult the dark
-<extras/lua/lig_dark.lua>, dark-soft <extras/lua/lig_dark_soft.lua>, light
-<extras/lua/lig_light.lua>, and light-soft <extras/lua/lig_light_soft.lua>
-themes.
-
-Settings & Changing Colors ~
-
->lua
-    require("lig").setup({
-      -- use the dark-soft style
-      style = "dark-soft",
-      -- disable italic for functions
-      styles = {
-        functions = {}
-      },
-      -- Change the "hint" comment color to the "coral" color, and make the "error" diagnostic color bright red
-      on_colors = function(colors)
-        colors.comment.hint = colors.coral
-        colors.diag.error = "#ff0000"
-      end
-    })
-<
-
-Fix undercurls in Tmux ~
-
-To have undercurls show up and in color, add the following to your Tmux
-<https://github.com/tmux/tmux> configuration file:
-
->sh
-    # Undercurl
-    set -g default-terminal "${TERM}"
-    set -as terminal-overrides ',*:Smulx=\E[4::%p1%dm'  # undercurl support
-    set -as terminal-overrides ',*:Setulc=\E[58::2::::%p1%{65536}%/%d::%p1%{256}%/%{255}%&%d::%p1%{255}%&%d%;m'  # underscore colours - needs tmux-3.0
-<
-
-
-EXTRAS                                              *lig.nvim-lig.nvim-extras*
-
-Extra color configs for Kitty <https://sw.kovidgoyal.net/kitty/conf.html>,
-WezTerm <https://wezfurlong.org/wezterm/config/files.html> and Ghostty
-<https://ghostty.org/> can be found in extras <extras/>. To use them, refer to
-their respective documentation.
-
-You can easily use the color palette for other plugins inside your Neovim
-<https://github.com/neovim/neovim> configuration:
-
->lua
-    local colors = require("lig.colors").setup() -- pass in any of the config options as explained above
-    local util = require("lig.util")
-    
-    aplugin.background = colors.bg_alt
-    aplugin.my_error = util.lighten(colors.amber, 0.3) -- number between 0 and 1. 0 results in white, 1 results in red1
-<
-
-
-CONTRIBUTING                                  *lig.nvim-lig.nvim-contributing*
-
-Pull requests are welcome.
-
-For the |lig.nvim-extras|, we use a simple template system that can be used to
-generate themes for the different styles.
-
-How to add a new extra template:
-
-1. Create a file like `lua/lig/extra/cool-app.lua`.
-
-
-2. Add the name and output file extension to the `extras` table in
-`lua/lig/extra/init.lua`.
-
-
-3. Run the following command to generate new |lig.nvim-extra| themes from the lig
-plugin directory:
-
->sh
-    ./scripts/build
-<
-
-
-4. Check the newly created themes in the `extra/` directory. Please **DO NOT**
-commit them, as they are already automatically built by the CI.
-
-
-
-Generated by panvimdoc <https://github.com/kdheepak/panvimdoc>
+Lualine: options = { theme = "lig" }
+Lightline: let g:lightline = { 'colorscheme': 'lig' }
+Fixed variants use lig-dark-paper / lig_dark_paper respectively.
+Reading statusline palettes does not change highlights or 'background'.
 
 vim:tw=78:ts=8:noet:ft=help:norl:

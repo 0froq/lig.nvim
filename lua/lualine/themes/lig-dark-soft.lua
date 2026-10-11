@@ -1,1 +1,1 @@
-return require("lualine.themes._lig").get("dark-soft")
+return require("lig.statusline").lualine("dark-paper")

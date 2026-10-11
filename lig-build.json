@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "designVersion": "0.2.13",
+  "compilerVersion": "0.5.0",
+  "inputHash": "959f2325a668603b64b2be68376506dc0e31e3939fd1417922ab1c70d1b2338a",
+  "sourceRepository": "https://github.com/0froq/lig",
+  "sourceRef": "neovim-stable-2026-10-11",
+  "variants": [
+    "light",
+    "dark",
+    "light-paper",
+    "dark-paper"
+  ],
+  "colorPolicy": "srgb-constant-lh-chroma-reduce",
+  "port": "neovim",
+  "packageVersion": "0.2.0",
+  "distributionRepository": "https://github.com/0froq/lig.nvim",
+  "files": {
+    "lua/lig/generated.lua": "62e74c7cce9646072c60f4f73997b4eed6f80e258e964a6e9ba974fe564d6d39",
+    "doc/lig.nvim.txt": "b05c1bc0f299d830fb8675cefe63c639369a6e8d0ae708f9a4cfd87ff9ce3194",
+    "lua/lig/init.lua": "3f247bbb376715ee7f8cafe3d8ad441dd5f14975e0c994a6b46b5a68f1c49d03",
+    "lua/lig/statusline.lua": "9e7dbd416961569cdd4f2dae8af47db51c7aa73dc324b20fd6a937d9b64b0e03",
+    "scripts/sync": "38f389e9b4e0b7eb064fa342dbe821108dadd0c0390d844dcb39731a8870461a",
+    "scripts/verify": "70225539c4906e413fc9a878ef14d6a26c15a5e8d9c76f6ea2d83f1b13d49007",
+    "colors/lig.lua": "5308e72826cba487b602d9aaa4211aee468fc98bd7bc79da3f8169d624a63585",
+    "colors/lig-light.lua": "a29173fbdea97e0ee5219bd002933abe87228af59bee07c2e1a351b01607a5f2",
+    "colors/lig-dark.lua": "34109b8f6dee8107a0d23f763ce2af3fbd0855e7a3d87c1a25d5525d66c88b8a",
+    "colors/lig-light-paper.lua": "114362fa75d6beef82b70867dadbfe43e73614c8ac5e80eb5e546a568cbd9e29",
+    "colors/lig-dark-paper.lua": "ed02ca61eee1e7c439c9a46c46483c0343032a3ca7f00efd539875770110fd89",
+    "lua/lualine/themes/lig.lua": "8dcfff2617f4ca8e5947dd6984be2537bc01ade7ef3c5e57c0fcd933f98edced",
+    "lua/lightline/colorscheme/lig.lua": "9c86b7aa7f40049745d36a7c553f5e99a478d04536a06bef441521727ecb5344",
+    "autoload/lightline/colorscheme/lig.vim": "319a6100c2e8fd895512a33dc34865eb1a7fe2ec08165737eafdccf0e9d59df5",
+    "lua/lualine/themes/lig-light.lua": "9ef129fc4ed757184eee304f3b021eeb7569778bcc23619eb4785ddcad6d9b28",
+    "lua/lightline/colorscheme/lig_light.lua": "b23540d0622e3713459b0de658628531ef98d5f96732b2ad07c4cc3e51bd9a18",
+    "autoload/lightline/colorscheme/lig_light.vim": "f0b9d0bdc944ab628a84990331f698295ac6344068ce2d2d6dfa41a1b0ab8546",
+    "lua/lualine/themes/lig-dark.lua": "673df17eb89e9bbf62b2ef2240c273f11b815d3b68f48000a9eaee04e0fc1a20",
+    "lua/lightline/colorscheme/lig_dark.lua": "791bfd74b7504365246f394141a310c63477790b646313e99941fc34d8d486a0",
+    "autoload/lightline/colorscheme/lig_dark.vim": "81e715acd3ac59e9b8f11ef516c109006cf333629aaffe9f9a56705f5232da05",
+    "lua/lualine/themes/lig-light-paper.lua": "8e3177488799030f75bb24d9169e642f7ca95a50ec78e45f08af52941435d471",
+    "lua/lightline/colorscheme/lig_light_paper.lua": "6a91106de19653ee383080fe19132d1d2c97d12db78f95f577406c8dae8692fc",
+    "autoload/lightline/colorscheme/lig_light_paper.vim": "5b9b61d57b53f002597fe3954c9dd9356838cb2a61ccb8069eb1fd0883fab7db",
+    "lua/lualine/themes/lig-dark-paper.lua": "f749fedddb1a26ea281ca9aaf333071a0972b9cdc25765e5e25e34e514224461",
+    "lua/lightline/colorscheme/lig_dark_paper.lua": "c7b00561a507e60344d3038ea59ba095b68f1af4255ecbf90d3d6e9c7181807e",
+    "autoload/lightline/colorscheme/lig_dark_paper.vim": "3bb45d7e7459d09c4b60894198c09893b392775c672a362e94a6d9bbf4fc74c5",
+    "LICENSE": "aa1f4295dcb1944eadb4f4fc622a7cee91eef291a00972ef711e0b182e4255c9",
+    "README.md": "7c3f4c38e7e11c33c02aef42413a947b33466db7f4d09a9b5655ef9aa61c97b3",
+    "scripts/verify.lua": "412162baeb283404c9dd3c0cc3d7012774b3f743d66d97976698feeb080e6d81",
+    "colors/lig-light-soft.lua": "114362fa75d6beef82b70867dadbfe43e73614c8ac5e80eb5e546a568cbd9e29",
+    "lua/lualine/themes/lig-light-soft.lua": "8e3177488799030f75bb24d9169e642f7ca95a50ec78e45f08af52941435d471",
+    "colors/lig-dark-soft.lua": "ed02ca61eee1e7c439c9a46c46483c0343032a3ca7f00efd539875770110fd89",
+    "lua/lualine/themes/lig-dark-soft.lua": "f749fedddb1a26ea281ca9aaf333071a0972b9cdc25765e5e25e34e514224461"
+  },
+  "coverage": {
+    "integrations": {
+      "gitsigns": {
+        "plugin": "gitsigns.nvim",
+        "groupCount": 52
+      },
+      "mini_clue": {
+        "plugin": "mini.clue",
+        "groupCount": 7
+      },
+      "mini_completion": {
+        "plugin": "mini.completion",
+        "groupCount": 3
+      },
+      "mini_cursorword": {
+        "plugin": "mini.cursorword",
+        "groupCount": 2
+      },
+      "mini_diff": {
+        "plugin": "mini.diff",
+        "groupCount": 9
+      },
+      "mini_files": {
+        "plugin": "mini.files",
+        "groupCount": 8
+      },
+      "mini_indentscope": {
+        "plugin": "mini.indentscope",
+        "groupCount": 1
+      },
+      "mini_jump2d": {
+        "plugin": "mini.jump2d",
+        "groupCount": 4
+      },
+      "mini_snippets": {
+        "plugin": "mini.snippets",
+        "groupCount": 5
+      },
+      "mini_statusline": {
+        "plugin": "mini.statusline",
+        "groupCount": 10
+      },
+      "mini_tabline": {
+        "plugin": "mini.tabline",
+        "groupCount": 9
+      },
+      "blink": {
+        "plugin": "blink.cmp",
+        "groupCount": 36
+      },
+      "dashboard": {
+        "plugin": "dashboard-nvim",
+        "groupCount": 13
+      },
+      "fzf": {
+        "plugin": "fzf-lua",
+        "groupCount": 2
+      },
+      "telescope": {
+        "plugin": "telescope.nvim",
+        "groupCount": 6
+      },
+      "which-key": {
+        "plugin": "which-key.nvim",
+        "groupCount": 27
+      }
+    },
+    "statuslines": [
+      "lualine",
+      "lightline"
+    ],
+    "runtime": "native Lua",
+    "syntax": [
+      "classic",
+      "Tree-sitter",
+      "LSP"
+    ]
+  }
+}

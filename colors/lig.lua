@@ -1,3 +1,1 @@
-require("lig").load({
-  style = vim.o.background,
-})
+require("lig").load()

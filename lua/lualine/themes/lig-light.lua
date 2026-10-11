@@ -1,1 +1,1 @@
-return require("lualine.themes._lig").get("light")
+return require("lig.statusline").lualine("light")

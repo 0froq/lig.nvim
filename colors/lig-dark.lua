@@ -1,3 +1,1 @@
-require("lig").load({
-  style = "dark",
-})
+require("lig").load({ style = "dark" })
