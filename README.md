@@ -84,15 +84,15 @@ Reading either statusline palette does not change highlights or background.
 - `on_colors(colors)` is replaced by `on_tokens(tokens)`. The second argument to `on_highlights` is now the resolved token map, not the old flat palette. Migrate color references explicitly. The old `lig.colors`, `lig.util` and internal group modules are no longer public entrypoints.
 - The optional mono profile is retired. Enabled mono and legacy `on_colors` hooks produce a migration error rather than being silently ignored.
 - `cache`, `day_brightness`, `dim_inactive`, and `styles.sidebars` / `styles.floats` are retired. Use core tokens or `on_highlights` for customization. `transparent`, `terminal_colors`, syntax styles, plugin selection and `lualine_bold` remain supported.
-- The old extras/build scripts and screenshots describe the previous palette. Current lightweight ports are generated in the [LiG source repository](https://github.com/0froq/lig/tree/neovim-stable-2026-10-11/ports/lightweight), not maintained as duplicate palettes here. This repository is the Neovim distribution.
+- The old extras/build scripts and screenshots describe the previous palette. Current lightweight ports are generated in the [LiG source repository](https://github.com/0froq/lig/tree/neovim-stable-2026-10-12/ports/lightweight), not maintained as duplicate palettes here. This repository is the Neovim distribution.
 
 ## Source and verification
 
-Edit [core and adapter source](https://github.com/0froq/lig/tree/neovim-stable-2026-10-11) rather than generated files here. From that source checkout, run `pnpm ports:generate`; `dist/ports/neovim` is the installable payload. To import it into this checkout, run `python3 scripts/sync /path/to/lig/dist/ports/neovim` and review the Git diff before committing. `lig-build.json` records the immutable source ref, input hash and each generated file checksum. Run `python3 scripts/verify` in this repository to check checksums and native API contracts with your installed Neovim.
+Edit [core and adapter source](https://github.com/0froq/lig/tree/neovim-stable-2026-10-12) rather than generated files here. From that source checkout, run `pnpm ports:generate`; `dist/ports/neovim` is the installable payload. To import it into this checkout, run `python3 scripts/sync /path/to/lig/dist/ports/neovim` and review the Git diff before committing. `lig-build.json` records the immutable source ref, input hash and each generated file checksum. Run `python3 scripts/verify` in this repository to check checksums and native API contracts with your installed Neovim.
 
-Version: 0.2.0 · Design: 0.2.13 · Compiler: 0.5.0
+Version: 0.2.1 · Design: 0.2.14 · Compiler: 0.5.1
 
-Input SHA-256: `959f2325a668603b64b2be68376506dc0e31e3939fd1417922ab1c70d1b2338a`
+Input SHA-256: `053ecea48f5e5f184d9af74fe4f958288ee5ec484859600289a39ea60b518ed1`
 
 Non-visual verification covers loading/switching variants, native highlight/token values, all implemented integrations, statusline palettes and hooks. Actual rendering, installed plugin appearance and terminal readability still need manual review in your configuration. Lua booleans should have no underline; Lua table braces should use neutral punctuation colors.
 

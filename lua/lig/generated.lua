@@ -2,11 +2,11 @@
 return {
   ["metadata"] = {
   ["schemaVersion"] = 1,
-  ["designVersion"] = "0.2.13",
-  ["compilerVersion"] = "0.5.0",
-  ["inputHash"] = "959f2325a668603b64b2be68376506dc0e31e3939fd1417922ab1c70d1b2338a",
+  ["designVersion"] = "0.2.14",
+  ["compilerVersion"] = "0.5.1",
+  ["inputHash"] = "053ecea48f5e5f184d9af74fe4f958288ee5ec484859600289a39ea60b518ed1",
   ["sourceRepository"] = "https://github.com/0froq/lig",
-  ["sourceRef"] = "neovim-stable-2026-10-11",
+  ["sourceRef"] = "neovim-stable-2026-10-12",
   ["variants"] = { "light", "dark", "light-paper", "dark-paper" },
   ["colorPolicy"] = "srgb-constant-lh-chroma-reduce",
 },
@@ -134,6 +134,12 @@ return {
 },
   ["markup.raw"] = {
   ["foreground"] = "text.primary",
+},
+  ["markup.strikethrough"] = {
+  ["strikethrough"] = true,
+},
+  ["markup.underline"] = {
+  ["underline"] = true,
 },
   ["modifier.defaultLibrary"] = {
   ["italic"] = true,
@@ -463,6 +469,9 @@ return {
   ["@type.definition"] = {
   ["role"] = "type.definition",
 },
+  ["@type.builtin"] = {
+  ["role"] = "type.reference",
+},
   ["@constructor"] = {
   ["role"] = "constructor",
 },
@@ -492,6 +501,12 @@ return {
 },
   ["@function.call"] = {
   ["role"] = "function.call",
+},
+  ["@function.builtin"] = {
+  ["role"] = "function.definition",
+},
+  ["@function.macro"] = {
+  ["role"] = "function.definition",
 },
   ["@function.method"] = {
   ["role"] = "method.definition",
@@ -565,15 +580,6 @@ return {
   ["@comment.todo"] = {
   ["role"] = "comment.todo",
 },
-  ["@function.builtin"] = {
-  ["role"] = "function.definition",
-},
-  ["@function.macro"] = {
-  ["role"] = "function.definition",
-},
-  ["@type.builtin"] = {
-  ["role"] = "type.reference",
-},
   ["@comment.note"] = {
   ["role"] = "comment.note",
 },
@@ -585,9 +591,6 @@ return {
 },
   ["@markup.strong"] = {
   ["role"] = "markup.strong",
-},
-  ["@markup.italic"] = {
-  ["role"] = "markup.italic",
 },
   ["@markup.quote"] = {
   ["role"] = "markup.quote",
@@ -604,11 +607,14 @@ return {
   ["@markup.raw"] = {
   ["role"] = "markup.raw",
 },
+  ["@markup.italic"] = {
+  ["role"] = "markup.italic",
+},
   ["@markup.strikethrough"] = {
-  ["strikethrough"] = true,
+  ["role"] = "markup.strikethrough",
 },
   ["@markup.underline"] = {
-  ["underline"] = true,
+  ["role"] = "markup.underline",
 },
   ["LspKindText"] = {
   ["link"] = "@markup",
@@ -1866,7 +1872,7 @@ return {
   ["accent.azure.base"] = "#0088bb",
   ["accent.azure.faded"] = "#219ed5",
   ["syntax.keyword"] = "#5d5d5d",
-  ["syntax.string"] = "#696969",
+  ["syntax.string"] = "#989898",
   ["syntax.comment"] = "#989898",
   ["syntax.type"] = "#7b8bf0",
   ["syntax.constant"] = "#6875d8",
@@ -1990,7 +1996,7 @@ return {
   ["accent.primary"] = "accent.green.base",
   ["accent.secondary"] = "accent.orange.base",
   ["syntax.keyword"] = "family.mono.base",
-  ["syntax.string"] = "family.mono.secondary",
+  ["syntax.string"] = "family.mono.muted",
   ["syntax.comment"] = "family.mono.muted",
   ["syntax.type"] = "family.ref.muted",
   ["syntax.constant"] = "family.ref.base",
@@ -2112,7 +2118,7 @@ return {
   ["accent.azure.base"] = "#51b7eb",
   ["accent.azure.faded"] = "#4f9fc9",
   ["syntax.keyword"] = "#b7b7b7",
-  ["syntax.string"] = "#989898",
+  ["syntax.string"] = "#7a7a7a",
   ["syntax.comment"] = "#7a7a7a",
   ["syntax.type"] = "#8390d3",
   ["syntax.constant"] = "#95a4f6",
@@ -2236,7 +2242,7 @@ return {
   ["accent.primary"] = "accent.green.base",
   ["accent.secondary"] = "accent.orange.base",
   ["syntax.keyword"] = "family.mono.base",
-  ["syntax.string"] = "family.mono.secondary",
+  ["syntax.string"] = "family.mono.muted",
   ["syntax.comment"] = "family.mono.muted",
   ["syntax.type"] = "family.ref.muted",
   ["syntax.constant"] = "family.ref.base",
@@ -2358,7 +2364,7 @@ return {
   ["accent.azure.base"] = "#0088bb",
   ["accent.azure.faded"] = "#219ed5",
   ["syntax.keyword"] = "#5f5d59",
-  ["syntax.string"] = "#6a6964",
+  ["syntax.string"] = "#9a9893",
   ["syntax.comment"] = "#9a9893",
   ["syntax.type"] = "#7b8bf0",
   ["syntax.constant"] = "#6875d8",
@@ -2482,7 +2488,7 @@ return {
   ["accent.primary"] = "accent.green.base",
   ["accent.secondary"] = "accent.orange.base",
   ["syntax.keyword"] = "family.mono.base",
-  ["syntax.string"] = "family.mono.secondary",
+  ["syntax.string"] = "family.mono.muted",
   ["syntax.comment"] = "family.mono.muted",
   ["syntax.type"] = "family.ref.muted",
   ["syntax.constant"] = "family.ref.base",
@@ -2604,7 +2610,7 @@ return {
   ["accent.azure.base"] = "#51b7eb",
   ["accent.azure.faded"] = "#4f9fc9",
   ["syntax.keyword"] = "#b9b7b2",
-  ["syntax.string"] = "#9a9893",
+  ["syntax.string"] = "#7c7a75",
   ["syntax.comment"] = "#7c7a75",
   ["syntax.type"] = "#8390d3",
   ["syntax.constant"] = "#95a4f6",
@@ -2728,7 +2734,7 @@ return {
   ["accent.primary"] = "accent.green.base",
   ["accent.secondary"] = "accent.orange.base",
   ["syntax.keyword"] = "family.mono.base",
-  ["syntax.string"] = "family.mono.secondary",
+  ["syntax.string"] = "family.mono.muted",
   ["syntax.comment"] = "family.mono.muted",
   ["syntax.type"] = "family.ref.muted",
   ["syntax.constant"] = "family.ref.base",

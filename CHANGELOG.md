@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.2.1 - 2026-10-12
+
+- Use the mono muted tier for strings in all four variants instead of the secondary foreground, making their gray reading level distinct from base ink.
+- Preserve existing gray ramps, operator/UI secondary ink and retired soft compatibility entrypoints.
+
 ## 0.2.0 - 2026-10-11
 
 - Migrate the official repository to the canonical LiG OKLCH compiler and current token palette.
